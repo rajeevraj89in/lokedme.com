@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 public class LokedMe {
-	public static final String dir = "/home/rajeev/EclipseProjects/LockedMe/mydirectory";
+	public static final String dir = "/home/rajeev/EclipseProjects/lokedme.com/LockedMe/mydirectory";
 
 	public static void main(String[] args) {
 		mainscreen();
@@ -15,7 +15,7 @@ public class LokedMe {
 	}
 
 	public static void mainscreen() {
-		// -------------------- Main Menu Screen Design
+		// -------------------- Main Screen Design
 		// ---------------------------------//
 		System.out.println("-----------------------------------------------------------------");
 		System.out.print("|");
@@ -31,17 +31,17 @@ public class LokedMe {
 		System.out.format("\t \t Contact No : 7004860216. \t \t \t");
 		System.out.println("|");
 		System.out.println("-----------------------------------------------------------------");
+		
+		// -------------------- End Of Main Screen Design
+		// ---------------------------------//
+	}
+
+	public static void navigation() {
 		System.out.println("Main Menu For Navigation");
 		System.out.println("Press.");
 		System.out.println("1. To List files in Accending Order");
 		System.out.println("2. For user interaction operations");
 		System.out.println("3. Exit Application");
-		
-		// -------------------- End Of Main Menu Screen Design
-		// ---------------------------------//
-	}
-
-	public static void navigation() {
 		try {
 			Scanner scanner = new Scanner(System.in);
 			int selected = 0;
@@ -63,6 +63,7 @@ public class LokedMe {
 				break;
 			default:
 				System.out.println("Invalid Input!!");
+				mainscreen();
 				navigation();
 				break;
 			}
@@ -170,13 +171,17 @@ public class LokedMe {
 			File f1 = new File(dir);
 			String s[] = f1.list();
 			Arrays.sort(s);
+			int status = 0;
 			if (s.length != 0) {
 				for (String mystr : s) {
 					if (mystr.equals(filename)) {
-						System.out.println("Search successfull :" + filename);
-					} else {
-						System.out.println("Search failed :" + filename);
+						status = 1;
 					}
+				}
+				if(status == 1){
+					System.out.println("Search successfull");
+				}else{
+					System.out.println("Search failed");
 				}
 			} else {
 				System.out.println("Directory is empty!");
